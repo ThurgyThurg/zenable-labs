@@ -1,0 +1,36 @@
+# Zenable Labs
+
+Hands-on lab environments for the [Zenable Learning Hub](https://www.zenable.app/learn?utm_source=github&utm_medium=labs_repo&utm_campaign=labs_readme).
+
+Each directory under `labs/` is a self-contained environment for one lab — the containers, scripts, and sample services a lab needs, so you can run the real thing on your own machine instead of reading about it.
+
+## Why we publish these
+
+We think information should be free. Companies are complex, and everyone's AI adoption journey is different. A rising tide lifts all ships, so we're committed to helping people learn this well enough to make good decisions, whether or not they ever use Zenable.
+
+## Getting started
+
+The labs are written to be followed from the Learning Hub, which supplies the walkthrough, the expected output, and the explanation around each step:
+
+**[zenable.app/learn](https://www.zenable.app/learn?utm_source=github&utm_medium=labs_repo&utm_campaign=labs_getting_started)**
+
+You can also clone this repository and run any lab directly. Each one has its own README with prerequisites and a single command to bring the environment up.
+
+```bash
+git clone https://github.com/Zenable-io/labs.git ~/zenable-labs
+cd ~/zenable-labs/labs/<lab>
+```
+
+## Labs
+
+| Lab | What you'll do |
+|---|---|
+| [`ema-mcp`](labs/ema-mcp) | Stand up an enterprise IdP, a vendor authorization server, and a protected MCP server, then watch an AI agent get authorized with no consent screen — and try to break the security properties that make it safe. |
+
+## A note on running these
+
+These environments are built for learning, not production. They use demo credentials, self-signed trust, and deliberately weakened configurations so you can see what happens when things go wrong. Run them locally or on a throwaway VM, never somewhere that matters.
+
+## Contributing
+
+Please open an issue if you found something broken, unclear, or out of date

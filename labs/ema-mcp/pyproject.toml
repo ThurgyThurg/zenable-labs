@@ -1,0 +1,15 @@
+[project]
+name = "ema-mcp-demo"
+version = "0.1.0"
+description = "End-to-end MCP Enterprise-Managed Authorization (EMA / ID-JAG) demo on Keycloak"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.2.0",
+    "pyjwt[crypto]>=2.9.0",
+    "httpx>=0.27.0",
+    "starlette>=0.37.0",
+    "uvicorn>=0.30.0",
+]
+
+[tool.uv]
+package = false
