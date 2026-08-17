@@ -26,6 +26,7 @@ cd ~/zenable-labs/labs/<lab>
 | Lab | What you'll do |
 |---|---|
 | [`ema-mcp`](labs/ema-mcp) | Stand up an enterprise IdP, a vendor authorization server, and a protected MCP server, then watch an AI agent get authorized with no consent screen — and try to break the security properties that make it safe. |
+| [`a2a`](labs/a2a) | Build two agents that discover and call each other over the A2A protocol, with Keycloak issuing every credential — then send a rogue agent at them and watch each check reject it. |
 
 ## A note on running these
 

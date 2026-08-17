@@ -1,0 +1,48 @@
+--- agent-a-forecast
+{
+  "iss": "http://localhost:8080/realms/a2a-workshop",
+  "aud": [
+    "agent-b-planner",
+    "account"
+  ],
+  "azp": "agent-a-forecast",
+  "scope": "email trip:plan profile",
+  "typ": "Bearer",
+  "exp": 1786894194
+}
+--- agent-b-planner
+{
+  "iss": "http://localhost:8080/realms/a2a-workshop",
+  "aud": [
+    "agent-a-forecast",
+    "account"
+  ],
+  "azp": "agent-b-planner",
+  "scope": "email forecast:read profile",
+  "typ": "Bearer",
+  "exp": 1786894194
+}
+--- workshop-cli
+{
+  "iss": "http://localhost:8080/realms/a2a-workshop",
+  "aud": [
+    "agent-b-planner",
+    "account"
+  ],
+  "azp": "workshop-cli",
+  "scope": "email trip:plan profile",
+  "typ": "Bearer",
+  "exp": 1786894195
+}
+--- agent-c-stranger
+{
+  "iss": "http://localhost:8080/realms/a2a-workshop",
+  "aud": [
+    "agent-a-forecast",
+    "account"
+  ],
+  "azp": "agent-c-stranger",
+  "scope": "forecast:write email profile",
+  "typ": "Bearer",
+  "exp": 1786894195
+}

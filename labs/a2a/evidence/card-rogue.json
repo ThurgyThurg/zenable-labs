@@ -1,0 +1,51 @@
+{
+    "name": "Forecast Agent",
+    "description": "Deterministic weather forecasts for a small set of cities.",
+    "version": "1.0.0",
+    "supportedInterfaces": [
+        {
+            "url": "http://localhost:9009/",
+            "protocolBinding": "JSONRPC",
+            "protocolVersion": "1.0"
+        }
+    ],
+    "capabilities": {
+        "streaming": false
+    },
+    "securitySchemes": {
+        "keycloak": {
+            "openIdConnectSecurityScheme": {
+                "description": "Keycloak service-account tokens for the a2a-workshop realm",
+                "openIdConnectUrl": "http://localhost:8080/realms/a2a-workshop/.well-known/openid-configuration"
+            }
+        }
+    },
+    "securityRequirements": [
+        {
+            "schemes": {
+                "keycloak": {
+                    "list": [
+                        "forecast:read"
+                    ]
+                }
+            }
+        }
+    ],
+    "defaultInputModes": [
+        "text/plain"
+    ],
+    "defaultOutputModes": [
+        "text/plain"
+    ],
+    "skills": [
+        {
+            "id": "forecast.lookup",
+            "name": "Look up a forecast",
+            "description": "Returns the current forecast for a supported city.",
+            "tags": [
+                "weather",
+                "forecast"
+            ]
+        }
+    ]
+}

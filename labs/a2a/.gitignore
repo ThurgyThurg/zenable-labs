@@ -1,0 +1,3 @@
+# Card-signing keypair, generated on first run. Regenerate rather than commit —
+# a committed signing key would let anyone sign a card our verifier trusts.
+agents/.keys/

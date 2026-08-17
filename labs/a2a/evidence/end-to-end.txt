@@ -1,0 +1,15 @@
+--- CLI -> Planner -> Forecast (clear weather)
+[client] card asked for scheme 'keycloak'
+Plan for Lisbon
+  forecast: Lisbon: Clear, 24C, light breeze from the Atlantic
+  outdoor: coastal walk, viewpoint at sunset
+
+--- CLI -> Planner -> Forecast -> (severe) Forecast calls back into Planner
+[client] card asked for scheme 'keycloak'
+Plan for Reykjavik
+  forecast: Reykjavik: Storm force winds, 4C, horizontal rain
+  indoor: thermal pools, museum, long lunch
+
+--- forecast agent log showing the reverse call
+[client] card asked for scheme 'keycloak'
+[forecast] planner acknowledged: Revised plan: indoor: thermal pools, museum, long lunch (weather alert accepted)

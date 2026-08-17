@@ -1,0 +1,15 @@
+### ATTACK: client does not verify the card signature
+client saw: Sunny, 25C
+--- what the rogue captured:
+====================================================================
+ROGUE AGENT RECEIVED A REQUEST
+  stolen bearer token (1339 chars): eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6...
+  body: {"method":"SendMessage","params":{"message":{"messageId":"73f0caa3-6d41-4aae-81fc-149eeece9d23","role":"ROLE_AGENT","parts":[{"text":"forecast for Lisbon"}]},"configuration":{}},"id":"d6ad3a15-46b6-4b
+====================================================================
+
+### DEFENSE: same call, signature verification on
+client refused: NoSignatureError: AgentCard has no signatures to verify.
+--- bytes the rogue captured this time: 0
+
+### CONTROL: verifying client against the real, signed agent
+client saw: Lisbon: Clear, 24C, light breeze from the Atlantic

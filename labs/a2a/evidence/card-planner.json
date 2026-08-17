@@ -1,0 +1,102 @@
+{
+    "name": "Trip Planner Agent",
+    "description": "Plans a one-day itinerary, consulting the forecast agent for weather.",
+    "supportedInterfaces": [
+        {
+            "url": "http://localhost:9002/",
+            "protocolBinding": "JSONRPC",
+            "protocolVersion": "1.0"
+        }
+    ],
+    "version": "1.0.0",
+    "capabilities": {
+        "streaming": true
+    },
+    "securitySchemes": {
+        "keycloak": {
+            "openIdConnectSecurityScheme": {
+                "description": "Keycloak service-account tokens for the a2a-workshop realm",
+                "openIdConnectUrl": "http://localhost:8080/realms/a2a-workshop/.well-known/openid-configuration"
+            }
+        }
+    },
+    "securityRequirements": [
+        {
+            "schemes": {
+                "keycloak": {
+                    "list": [
+                        "trip:plan"
+                    ]
+                }
+            }
+        }
+    ],
+    "defaultInputModes": [
+        "text/plain"
+    ],
+    "defaultOutputModes": [
+        "text/plain"
+    ],
+    "skills": [
+        {
+            "id": "trip.plan",
+            "name": "Plan a day trip",
+            "description": "Builds a one-day itinerary for a city, weather-aware.",
+            "tags": [
+                "travel",
+                "planning"
+            ],
+            "examples": [
+                "plan a day in Lisbon",
+                "plan Reykjavik"
+            ],
+            "inputModes": [
+                "text/plain"
+            ],
+            "outputModes": [
+                "text/plain"
+            ],
+            "securityRequirements": [
+                {
+                    "schemes": {
+                        "keycloak": {
+                            "list": [
+                                "trip:plan"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "id": "trip.replan",
+            "name": "Revise a plan after a weather alert",
+            "description": "Accepts a severe-weather alert and returns a revised itinerary.",
+            "tags": [
+                "travel",
+                "planning",
+                "alerts"
+            ],
+            "examples": [
+                "replan reykjavik: Storm force winds"
+            ],
+            "inputModes": [
+                "text/plain"
+            ],
+            "outputModes": [
+                "text/plain"
+            ],
+            "securityRequirements": [
+                {
+                    "schemes": {
+                        "keycloak": {
+                            "list": [
+                                "trip:plan"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

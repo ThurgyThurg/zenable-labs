@@ -1,0 +1,3 @@
+[client] card asked for scheme 'keycloak'
+skills on the EXTENDED card: ['forecast.lookup', 'forecast.stations']
+skills on the PUBLIC card: ['forecast.lookup']

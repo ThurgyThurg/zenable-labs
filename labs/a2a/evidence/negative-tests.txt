@@ -1,0 +1,21 @@
+=== 1. No token at all ===
+no credentials                     HTTP 401  {"error":"missing_token","error_description":"No bearer token presented"}
+
+=== 2. Wrong audience (token minted for Agent B) ===
+aud=agent-b-planner                HTTP 401  {"error":"invalid_token","error_description":"Token failed verification"}
+
+=== 3. Right audience, wrong scope ===
+scope=forecast:write               HTTP 403  {"error":"insufficient_scope","error_description":"Requires scope 'forecast:read'"}
+
+=== 4. Expired token ===
+    (token lifespan is 1s; sleeping 3s to let it die)
+expired                            HTTP 401  {"error":"invalid_token","error_description":"Token failed verification"}
+
+=== 5. Valid token from a different trust domain ===
+iss=rogue-realm                    HTTP 401  {"error":"invalid_token","error_description":"Token failed verification"}
+
+=== 6. Garbage that is not a JWT ===
+not-a-jwt                          HTTP 401  {"error":"invalid_token","error_description":"Token failed verification"}
+
+=== Control: the request that SHOULD work ===
+aud+scope correct                  HTTP 200  {"result":{"message":{"messageId":"73a156f3-8039-44ee-960c-dfac7662de1d","role":"ROLE_AGENT","parts":[{"text":"Lisbon: C
