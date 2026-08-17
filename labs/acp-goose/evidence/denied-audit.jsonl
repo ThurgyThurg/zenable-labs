@@ -1,0 +1,6 @@
+{"direction": "client->agent", "method": "initialize", "id": 1, "verdict": "forwarded"}
+{"direction": "client->agent", "method": "session/new", "id": 2, "verdict": "forwarded"}
+{"direction": "agent->client", "method": null, "id": 1, "verdict": "forwarded"}
+{"direction": "agent->client", "method": null, "id": 2, "verdict": "forwarded"}
+{"direction": "agent->client", "method": "fs/write_text_file", "id": 1001, "verdict": "DENIED"}
+{"direction": "agent->client", "method": "terminal/create", "id": 1002, "verdict": "DENIED"}

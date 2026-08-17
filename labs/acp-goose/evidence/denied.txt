@@ -1,0 +1,8 @@
+[acp] {"direction": "client->agent", "method": "initialize", "id": 1, "verdict": "forwarded"}
+[acp] {"direction": "client->agent", "method": "session/new", "id": 2, "verdict": "forwarded"}
+[acp] {"direction": "agent->client", "method": null, "id": 1, "verdict": "forwarded"}
+[acp] {"direction": "agent->client", "method": null, "id": 2, "verdict": "forwarded"}
+[acp] {"direction": "agent->client", "method": "fs/write_text_file", "id": 1001, "verdict": "DENIED"}
+fs/write_text_file   REFUSED -- fs/write_text_file refused by client policy
+[acp] {"direction": "agent->client", "method": "terminal/create", "id": 1002, "verdict": "DENIED"}
+terminal/create      REFUSED -- terminal/create refused by client policy

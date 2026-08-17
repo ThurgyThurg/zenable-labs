@@ -1,0 +1,8 @@
+agent                goose 1.46.0
+protocolVersion      1
+loadSession          True
+prompt content       embeddedContext, image
+mcp transports       http
+authMethods          1
+  - goose-provider: Configure Provider
+      Run `goose configure` to set up your AI provider and API key

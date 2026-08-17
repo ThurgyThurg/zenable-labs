@@ -1,0 +1,4 @@
+[client] wrote /tmp/acp-demanding-agent.txt
+fs/write_text_file   ALLOWED
+[client] ran id -> uid=0(root) gid=0(root) groups=0(root)
+terminal/create      ALLOWED
