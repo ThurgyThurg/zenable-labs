@@ -6,8 +6,9 @@ Hub](https://www.zenable.app/learn?utm_source=github&utm_medium=labs_repo&utm_ca
 Every command and every expected output in that lab was captured from a real
 run of this rig; `evidence/` holds the raw output.
 
-The lab has you write these files yourself, so this tree is what you diff
-against when something will not start — not something you clone.
+The lab clones this tree and runs it, so these files are the ones a reader
+executes. A fix here reaches them immediately; nothing is retyped from the
+Learning Hub.
 
 Fully open source: A2A Python SDK (Apache-2.0), Keycloak (Apache-2.0), uv,
 Docker. No cloud account and no LLM key — the agents are deterministic lookup
