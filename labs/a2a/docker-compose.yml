@@ -15,8 +15,11 @@ services:
       - "8080:8080"
     healthcheck:
       # The management port (9000) serves health; the container has no curl,
-      # so probe over bash's /dev/tcp instead of adding a package.
-      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /health/ready HTTP/1.1\\nHost: localhost\\nConnection: close\\n\\n' >&3 && cat <&3 | grep -q '\"status\": \"UP\"'"]
+      # so probe over bash's /dev/tcp instead of adding a package. The request
+      # lines MUST end in CRLF -- Keycloak's Quarkus listener drops a request
+      # terminated with bare LF, so the probe fails every time and `up --wait`
+      # never returns.
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && printf 'GET /health/ready HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n' >&3 && cat <&3 | grep -q '\"status\": \"UP\"'"]
       interval: 5s
       timeout: 5s
       retries: 30
