@@ -6,8 +6,9 @@ Hub](https://www.zenable.app/learn?utm_source=github&utm_medium=labs_repo&utm_ca
 Every command and every expected output in that lab was captured from a real
 run; `evidence/` holds those captures.
 
-The lab has you write these files yourself, so this tree is what you **diff
-against** when something misbehaves — not something you clone to run.
+The lab clones this tree and runs it, so these files are the ones a reader
+executes. A fix here reaches them immediately; nothing is retyped from the
+Learning Hub.
 
 ## Which ACP?
 
