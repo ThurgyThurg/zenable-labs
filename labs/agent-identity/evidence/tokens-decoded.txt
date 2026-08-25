@@ -1,0 +1,20 @@
+Agent's DPoP public key thumbprint (RFC 7638): zchOwz-IApvBEn3smxCdMryqhqg508v_8l2Ye4uctgA
+
+--- agent-bound ---
+token_type: DPoP
+expires_in: 300
+iss: "http://localhost:8080/realms/agent-identity"
+aud: ["ledger-api", "account"]
+azp: "agent-bound"
+scope: "email profile invoice:read"
+cnf: {"jkt": "zchOwz-IApvBEn3smxCdMryqhqg508v_8l2Ye4uctgA", "kc-jkt-type": "DPoP"}
+
+--- agent-bearer ---
+token_type: Bearer
+expires_in: 300
+iss: "http://localhost:8080/realms/agent-identity"
+aud: ["ledger-api", "account"]
+azp: "agent-bearer"
+scope: "email profile invoice:read"
+cnf: null
+
