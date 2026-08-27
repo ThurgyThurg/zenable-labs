@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://agentgateway.dev/schema/config
+# Step 4: the gateway starts refusing things. mcpAuthorization is an allow
+# list -- a tool no rule names is filtered out of tools/list, and refused if
+# a client asks for it anyway.
+#
+# The names here are the tools' OWN names, not the prefixed ones a client
+# sees after multiplexing. `mcp.tool.name` is documented as "the resolved tool
+# name sent to the upstream target", and the target has never heard of the
+# prefix the gateway added.
+config:
+  # The admin API and the built-in UI. Bound to all interfaces because the
+  # default is the container's own localhost, which nothing outside can reach.
+  adminAddr: 0.0.0.0:15000
+  logging:
+    # One JSON object per request instead of a line of key=value. Same fields,
+    # but `jq` can read them, which is what makes the access log queryable.
+    format: json
+  tracing:
+    otlpEndpoint: http://jaeger:4317
+    # Every request, because a lab that samples 1% shows the reader nothing.
+    randomSampling: "true"
+binds:
+- port: 3000
+  listeners:
+  - routes:
+    - policies:
+        mcpAuthorization:
+          rules:
+          - 'mcp.tool.name == "add"'
+          - 'mcp.tool.name == "shout"'
+          - 'mcp.tool.name == "list_tickets"'
+      backends:
+      - mcp:
+          targets:
+          - name: get-started
+            mcp:
+              host: http://mcp-get-started:8000/mcp
+          - name: tickets
+            mcp:
+              host: http://tickets:8000/mcp

@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://agentgateway.dev/schema/config
+# Step 5: step 4's rules, plus a cap on how fast anyone may call through.
+# The limit is per route and counts every MCP request, handshake included.
+config:
+  # The admin API and the built-in UI. Bound to all interfaces because the
+  # default is the container's own localhost, which nothing outside can reach.
+  adminAddr: 0.0.0.0:15000
+  logging:
+    # One JSON object per request instead of a line of key=value. Same fields,
+    # but `jq` can read them, which is what makes the access log queryable.
+    format: json
+  tracing:
+    otlpEndpoint: http://jaeger:4317
+    # Every request, because a lab that samples 1% shows the reader nothing.
+    randomSampling: "true"
+binds:
+- port: 3000
+  listeners:
+  - routes:
+    - policies:
+        # Ten requests, then one back per six seconds. Low enough to hit by
+        # hand; a production number would be nowhere near this.
+        localRateLimit:
+        - maxTokens: 10
+          tokensPerFill: 1
+          fillInterval: 6s
+        mcpAuthorization:
+          rules:
+          - 'mcp.tool.name == "add"'
+          - 'mcp.tool.name == "shout"'
+          - 'mcp.tool.name == "list_tickets"'
+      backends:
+      - mcp:
+          targets:
+          - name: get-started
+            mcp:
+              host: http://mcp-get-started:8000/mcp
+          - name: tickets
+            mcp:
+              host: http://tickets:8000/mcp
