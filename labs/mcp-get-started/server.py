@@ -1,10 +1,17 @@
 """The whole MCP server. Transport is chosen at launch, never in here."""
 
+import asyncio
+
 from fastmcp import FastMCP
+from fastmcp_tasks import TasksExtension
 from starlette.requests import Request
 from starlette.responses import PlainTextResponse
 
 mcp = FastMCP("mcp-get-started")
+
+# Turns on `task=True` below. Defaults to an in-process queue; point it at
+# Redis when one process is no longer enough.
+mcp.add_extension(TasksExtension())
 
 
 # Only mounted by the HTTP transports; stdio has no routes to serve it on.
@@ -22,6 +29,15 @@ def add(a: int, b: int) -> int:
 @mcp.tool
 def shout(text: str) -> str:
     """Uppercase a string and add urgency."""
+    return text.upper() + "!"
+
+
+# task=True needs an async function and the `tasks` extra; the client decides
+# per call whether to use it.
+@mcp.tool(task=True)
+async def slow_shout(text: str, seconds: int = 10) -> str:
+    """Uppercase a string, slowly. Long enough that a caller shouldn't wait on it."""
+    await asyncio.sleep(seconds)
     return text.upper() + "!"
 
 
